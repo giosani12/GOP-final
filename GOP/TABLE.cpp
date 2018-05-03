@@ -2,6 +2,7 @@
 #include "TABLE.h"
 #include <cstdlib>
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -9,9 +10,10 @@ TABLE::TABLE(int input)//costruttore tabella, inizializza tutti i campi e prende
 {
 	lenght = input;
 	valid = true;
+	int temp[35] = { 0,0,0,0,0,1,1,1,1,1,2,2,2,3,3,3,3,3,4,4,4,5,5,6,6,6,7,7,7,7,8,8,8,8,9 };
 	pt = new int[lenght];
 	pt[0] = 0;
-	for (int i = 1; i < lenght - 1; i++) pt[i] = rand() % 19;
+	for (int i = 1; i < lenght - 1; i++) pt[i] = temp[rand() % 35];
 	pt[lenght - 1] = 0;
 }
 

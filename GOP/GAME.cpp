@@ -73,41 +73,6 @@ void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
 		playerList->position = 1;
 		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' tornato all'inizio ed ora e\' in posizione 1";
 		break;
-	case 10:
-		cout << "\nEffetto casella: casella vuota!";
-		break;
-	case 11:
-		addToPosition(1);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di una casella e ora e\' in posizione " << playerList->position;
-		break;
-	case 12:
-		addToPosition(2);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di due caselle e ora e\' in posizione " << playerList->position;
-		break;
-	case 13:
-		addToPosition(-1);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di una casella e ora e\' in posizione " << playerList->position;
-		break;
-	case 14:
-		addToPosition(-2);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di due caselle ed ora e\' in posizione " << playerList->position;
-		break;
-	case 15:
-		swapWithFirst();
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " ha scambiato la sua posizione con il primo in classifica";
-		break;
-	case 16:
-		playerList->jumpTurn = true;
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " saltera\' il prossimo turno";
-		break;
-	case 17:
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " tira due volte il dado";
-		throwDice();
-		break;
-	case 18:
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " pesca una carta.";
-		cardTypeTranslate();
-		break;
 	default:
 		cout << "INTERNAL_ERROR -Prego allontanarsi dal computer ";
 	}
