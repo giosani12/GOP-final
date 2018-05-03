@@ -306,7 +306,7 @@ void GAME::firstTurn()//Inizializza la lista di giocatori, il mazzo e la tabella
 	cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
 	cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.\n";
 	createPlayerList();
-	createDeck(rand() % 20 + 35);
+	createDeck(rand() % 20 + 40);
 	ptTab = new TABLE(rand() % 20 + 55);
 	nextTurn();
 	return;
