@@ -74,7 +74,7 @@ void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
 		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' tornato all'inizio ed ora e\' in posizione 1";
 		break;
 	default:
-		cout << "INTERNAL_ERROR -Prego allontanarsi dal computer ";
+		cout << "\nINTERNAL_ERROR -Prego allontanarsi dal computer ";
 	}
 }
 
@@ -107,7 +107,7 @@ void GAME::cardTypeTranslate()//chiamante per gli effetti del mazzo di carte
 		throwDice();
 		break;
 	default:
-		cout << "INTERNAL_ERROR -Prego allontanarsi dal computer ";
+		cout << "\nINTERNAL_ERROR -Prego allontanarsi dal computer ";
 	}
 	ptDeck = ptDeck->next;
 }
