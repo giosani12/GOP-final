@@ -18,6 +18,7 @@ PLAYER::PLAYER(int num, char n[])//costruttore della struttura giocatore, riempi
 {								 //usata dal costruttore della lista playerList
 	numero = num ;
 	position = 1 ;
+	points = 0;
 	strcpy(name, n);
 	jumpTurn = false;
 	next = NULL;

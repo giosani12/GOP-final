@@ -19,6 +19,7 @@ protected:
 	ptTABLE ptTab;
 
 	void addToPosition(int);
+	void addPoints(int);
 	void throwDice();
 	void tabTypeTranslate();
 	void cardTypeTranslate();

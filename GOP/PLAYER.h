@@ -12,6 +12,7 @@ public:
 	bool jumpTurn;
 	int position;
 	int numero;
+	int points;
 	char name[20];
 	ptPLAYER next;
 	PLAYER();

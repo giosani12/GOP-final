@@ -30,6 +30,11 @@ void GAME::addToPosition(int num)//funzione utile per gli effetti di movimento s
 	else playerList->position = 1;
 }
 
+void addPoints(int num)
+{
+	playerList->points = playerList->points + num;
+}
+
 void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
 {
 	switch (ptTab->getType(playerList->position))
@@ -105,6 +110,14 @@ void GAME::cardTypeTranslate()//chiamante per gli effetti del mazzo di carte
 	case 5:
 		cout << "\nEffetto carta: il giocatore " << playerList->name << " tira di nuovo il dado";
 		throwDice();
+		break;
+	case 6:
+		addPoints(50);
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " ottiene 50 punti";
+		break;
+	case 7:
+		addPoints(100);
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " ottiene 100 punti";
 		break;
 	default:
 		cout << "\nINTERNAL_ERROR -Prego allontanarsi dal computer ";
