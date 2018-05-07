@@ -14,18 +14,17 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
   • Torna alla posizione iniziale <br>
   • Casella vuota <br>
   • Tira di nuovo il dado <br>
-  • Ottieni punti ( 25 ) <br>
   
   <h5>Tipi di carte: </h5>
   • Avanza o arretra di 1 o 2 caselle <br>
   • Tira di nuovo il dado <br>
   • Scambia la tua posizione con quella del primo in classifica <br>
-  • Ottieni punti (50, 75 o 150) <br>
+  • Ottieni punti (50 o 100) <br>
  
  <h5>Funzionamento: </h5>
  All'inizio di ogni turno il giocatore corrente tira il dado, si sposta sul tabellone e pesca una carta, si attivano poi gli effetti 
  della casella e della carta. Per vincere si deve raggiungere il traguardo (ultima casella del tabellone) oppure raggiungere
- un totale di 1000 punti; inoltre ad ogni turno è possibile interrompere la partita o consultare il regolamento.
+ un totale di 500 punti; inoltre ad ogni turno è possibile interrompere la partita o consultare il regolamento.
  Dopo l'attivazione degli effetti vieni anche stampata la classifica.
  
  Non abbiamo utilizzato librerie grafiche.
