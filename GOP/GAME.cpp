@@ -248,12 +248,12 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 			if ((i == playerList->position) && !found)
 			{
 				pos = pos + 1;
-				cout << "\n|" << pos << "\t\t|" << playerList->position << "\t\t\t|" << playerList->name;
+				cout << "\n|" << pos << "\t\t|" << "\n|" << playerList->points << "\t\t|" << playerList->position << "\t\t\t|" << playerList->name;
 				found = true;
 			}
 			else if ((i == playerList->position) && found)
 			{
-				cout << "\n|" << pos << "\t\t|" << playerList->position << "\t\t\t|" << playerList->name;
+				cout << "\n|" << pos << "\t\t|" << "\n|" << playerList->points << "\t\t|" << playerList->position << "\t\t\t|" << playerList->name;
 			}
 			playerList = playerList->next;
 		}
