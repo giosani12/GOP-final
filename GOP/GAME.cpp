@@ -30,7 +30,7 @@ void GAME::addToPosition(int num)//funzione utile per gli effetti di movimento s
 	else playerList->position = 1;
 }
 
-void addPoints(int num)
+void GAME::addPoints(int num)
 {
 	playerList->points = playerList->points + num;
 }
