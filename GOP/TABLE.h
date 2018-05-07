@@ -5,6 +5,8 @@ class GAME;
 class TABLE;
 typedef TABLE* ptTABLE;
 
+#include "GAME.h"
+
 class TABLE : public GAME
 {
 protected:

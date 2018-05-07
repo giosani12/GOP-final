@@ -238,7 +238,6 @@ void GAME::deleteDeck()//Distrugge la sovrastante
 
 void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 {
-	ptPLAYER tmp = playerList;
 	bool found = false;
 	int pos = 0;
 	cout << "\nCLASSIFICA:\n|Posizione\t|Posizione in Tabella\t|Nome Giocatore";
