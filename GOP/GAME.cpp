@@ -115,7 +115,7 @@ void GAME::cardTypeTranslate()//chiamante per gli effetti del mazzo di carte
 
 void GAME::getFirst(ptPLAYER *out)//funzione che restituisce un array di puntatori al (o ai) giocatore primo in classifica 
 {
-	int i, counter = 0, j = 0;
+	int i, counter = 0;
 	bool found = false;
 	ptPLAYER ptTMP = playerList;
 	for (i = ptTab->lenght; ((i > 0) && !found); i--)
