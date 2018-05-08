@@ -171,27 +171,49 @@ void GAME::swapWithFirst()//scambia la posizione del giocatore corrente con il p
 
 void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori (lista circolare) prendendo da input numero e nome dei giocatori.
 {
-	int num = 0, i = 1;
-	char tmpName[20];
-	string tmpNameSTR;
+	int i = 1, count = 0;
+	char tmpName[21];
 	ptPLAYER tmp, ptHead;
 	tmpName[0] = '\0';
-	do
+	while (count < 1)
 	{
 		cout << "\nInserire numero giocatori: ";
-		cin >> num;
-	} while (num < 1);
-	NUMERO_GIOCATORI = num;
+		cin >> count;
+		if (!cin.good())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "\nInput invalido";
+			count = 0;
+		}
+	}
+	NUMERO_GIOCATORI = count;
+LABEL:
+	cin.ignore(1,EOF);
 	cout << "\nInserire nome per giocatore " << i << ": ";
-	cin.ignore(1, EOF);
-	cin.getline(tmpName, 20, '\n');
+	cin.getline(tmpName, 21);
+	if (!cin.good())
+	{
+		cin.clear();
+		cin.ignore(200, '\n');
+		cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
+		goto LABEL;
+	}
 	playerList = new PLAYER(1, tmpName);
 	ptHead = playerList;
 	i++;
-	while (i <= num)
+	while (i <= NUMERO_GIOCATORI)
 	{
+		N_LABEL:
 		cout << "\nInserire nome per giocatore " << i << ": ";
-		cin.getline(tmpName, 20, '\n');
+		cin.getline(tmpName, 21, '\n');
+		if (!cin.good())
+		{
+			cin.clear();
+			cin.ignore(200, '\n');
+			cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
+			goto N_LABEL;
+		}
 		tmp = new PLAYER(i, tmpName);
 		playerList->next = tmp;
 		playerList = tmp;
