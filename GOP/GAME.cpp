@@ -206,7 +206,7 @@ void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori 
 	{
 		cout << "\nInserire numero giocatori: ";
 		cin >> count;
-		if (!cin.good())
+		if (!cin.good() || (cin.peek() != '\n'))
 		{
 			cin.clear();
 			cin.ignore(100, '\n');
@@ -215,8 +215,8 @@ void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori 
 		}
 	}
 	NUMERO_GIOCATORI = count;
+	cin.ignore(200, '\n');
 LABEL:
-	cin.ignore(1,EOF);
 	cout << "\nInserire nome per giocatore " << i << ": ";
 	cin.getline(tmpName, 21);
 	if (!cin.good())
@@ -231,7 +231,7 @@ LABEL:
 	i++;
 	while (i <= NUMERO_GIOCATORI)
 	{
-		N_LABEL:
+	N_LABEL:
 		cout << "\nInserire nome per giocatore " << i << ": ";
 		cin.getline(tmpName, 21, '\n');
 		if (!cin.good())
@@ -283,9 +283,6 @@ void GAME::createDeck(int lenght)//Crea lista circolare di carte con testa in pt
 		}
 	}
 	tmp->next = ptDeck;
-	cout << "\nE\' stato creato un mazzo di " << lenght << " carte.";
-	cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in ";
-	cout << "\nclassifica e tira di nuovo il dado.";
 }
 
 void GAME::deleteDeck()//Distrugge la sovrastante
@@ -328,11 +325,19 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 
 void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il mazzo e la tabella
 {
-	cout << "Questo e\' il gioco GOP per il progetto di programmazione";
-	cout << "\n\t\t\t\t\t\tREGOLE:";
-	cout << "\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha ";
+	cout << "Questo e\' il gioco GOP per il progetto di programmazione\n";
+	cout << "\n\t\t\t\t\t\t   REGOLE:\n";
+	cout << "\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha";
 	cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
 	cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.\n";
+	cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in";
+	cout << "\nclassifica, tira di nuovo il dado, guadagna 50 punti e guadagna 100 punti.\n";
+	cout << "\nEffetti caselle: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due,, scambia con primo in";
+	cout << "\nclassifica, tira di nuovo il dado, pesca una carta, torna all'inizio e salta il turno.\n";
+	createDeck(rand() % 20 + 40);
+	cout << "\nE\' stato creato un mazzo di " << ptDeck->len << " carte.\n";
+	ptTab = new TABLE(rand() % 20 + 55);
+	cout << "\nE\' stato creato un tabellone di " << ptTab->lenght << " caselle.\n";
 	if (same_player)
 	{
 		for (int j = 0; j < NUMERO_GIOCATORI; j++)
@@ -344,8 +349,7 @@ void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il ma
 		}
 	}
 	else createPlayerList();
-	createDeck(rand() % 20 + 40);
-	ptTab = new TABLE(rand() % 20 + 55);
+	cin.ignore(1);
 	nextTurn();
 	return;
 }
