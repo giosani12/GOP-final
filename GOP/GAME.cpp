@@ -33,6 +33,7 @@ void GAME::addToPosition(int num)//funzione utile per gli effetti di movimento s
 void GAME::addPoints(int num)
 {
 	playerList->points = playerList->points + num;
+	if (playerList->points > 500) playerList->points = 500;
 }
 
 void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
@@ -350,22 +351,22 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 			return;
 		}
 		tabTypeTranslate();
-		if (playerList->position >= ptTab->lenght)
+		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
 		{
 			endGame(true); //True quando il gioco finisce in modo normale
 			return;
 		}
 		drawCard();
+		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
+		{
+			endGame(true); //True quando il gioco finisce in modo normale
+			return;
+		}
 	}
 	else
 	{
 		cout << "\nIl giocatore " << playerList->name << " salta il turno.";
 		playerList->jumpTurn = false;
-	}
-	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))//True quando il gioco finisce in modo normale
-	{
-		endGame(true);
-		return;
 	}
 	ptTab->printTable();
 	printChart();
@@ -377,21 +378,17 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		{
 			cout << "REGOLE:\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha ";
 			cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
-			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.";
+			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone, o quando raggiunge 500 punti.";
 			cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in ";
-			cout << "\nclassifica e tira di nuovo il dado.\n";
+			cout << "\nclassifica, tira di nuovo il dado, ottieni 50 punti e ottieni 100 punti.\n";
 		}
 	} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
-	if ((loop == 'Y') || (loop == 'y'))//False quando il gioco è interrotto dall'utente
+	if ((loop == 'Y') || (loop == 'y'))
 	{
-		endGame(false);
+		endGame(false); //False quando il gioco è interrotto dall'utente
 		return;
 	}
-	else// if ((loop == 'N') || (loop == 'n'))
-	//{
-		GAME::nextTurn();
-	//	return;
-	//}
+	else GAME::nextTurn();
 	return;
 }
 
@@ -411,9 +408,9 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deletePlayerList();
 		do
 		{
-			cout << "Se vuoi ricominciare scrivi Y, se vuoi uscire scrivi N (non case sensitive)";
+			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
+		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
 		if ((loop == 'Y') || (loop == 'y')) firstTurn();
 		else return;
 	}
@@ -426,9 +423,9 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deletePlayerList();
 		do 
 		{
-			cout << "Se vuoi ricominciare scrivi Y, se vuoi uscire scrivi N (non case sensitive)";
+			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
+		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
 		if ((loop == 'Y') || (loop == 'y')) firstTurn();
 		else return;
 	}
