@@ -215,7 +215,7 @@ void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori 
 		}
 	}
 	NUMERO_GIOCATORI = count;
-	cin.ignore(200, '\n');
+	/*cin.ignore(200, '\n');
 LABEL:
 	cout << "\nInserire nome per giocatore " << i << ": ";
 	cin.getline(tmpName, 21);
@@ -245,7 +245,7 @@ LABEL:
 		playerList->next = tmp;
 		playerList = tmp;
 		i++;
-	}
+	}*/
 	playerList->next = ptHead;//in uscita playerlist punta all'ultimo giocatore perchè il primo turno inizia con un playerlist=playerlist->next
 }
 
@@ -260,8 +260,6 @@ void GAME::deletePlayerList()//Distrugge la lista di giocatori partendo dal punt
 	}
 }
 	
-
-
 void GAME::drawCard()//pesca una carta casuale dal mazzo e ne esegue l'effetto.
 {
 	cardTypeTranslate();
@@ -326,7 +324,7 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il mazzo e la tabella
 {
 	cout << "Questo e\' il gioco GOP per il progetto di programmazione\n";
-	cout << "\n\t\t\t\t\t\t   REGOLE:\n";
+	cout << "\n\t\t\t\t\t\t    REGOLE:\n";
 	cout << "\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha";
 	cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
 	cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.\n";
@@ -349,6 +347,7 @@ void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il ma
 		}
 	}
 	else createPlayerList();
+	cout << "Premi invio per iniziare il primo turno ";
 	cin.ignore(1);
 	nextTurn();
 	return;
