@@ -11,6 +11,6 @@ int main()//main
 {
 	srand((unsigned int)time(NULL));
 	ptGAME GIOCO= new GAME();
-	GIOCO->firstTurn();
+	GIOCO->firstTurn(false);
 	return 0;
 }

@@ -326,14 +326,24 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 	cout << endl;
 }
 
-void GAME::firstTurn()//Inizializza la lista di giocatori, il mazzo e la tabella
+void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il mazzo e la tabella
 {
 	cout << "Questo e\' il gioco GOP per il progetto di programmazione";
 	cout << "\n\t\t\t\t\t\tREGOLE:";
 	cout << "\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha ";
 	cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
 	cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.\n";
-	createPlayerList();
+	if (same_player)
+	{
+		for (int j = 0; j < NUMERO_GIOCATORI; j++)
+		{
+			playerList->jumpTurn = false;
+			playerList->position = 1;
+			playerList->points = 0;
+			playerList = playerList->next;
+		}
+	}
+	else createPlayerList();
 	createDeck(rand() % 20 + 40);
 	ptTab = new TABLE(rand() % 20 + 55);
 	nextTurn();
@@ -411,10 +421,20 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deletePlayerList();
 		do
 		{
-			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
+			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi N,";
+			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
-		if ((loop == 'Y') || (loop == 'y')) firstTurn();
+		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'N' && loop != 'n');
+		if ((loop == 'R') || (loop == 'r'))
+		{
+			while (playerList->numero != NUMERO_GIOCATORI) playerList = playerList->next;
+			firstTurn(true);
+		}
+		else if ((loop == 'N') || (loop == 'n'))
+		{
+			deletePlayerList();
+			firstTurn(false);
+		}
 		else return;
 	}
 	else if (!end)
@@ -423,13 +443,26 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		printChart();
 		delete ptTab;
 		deleteDeck();
-		deletePlayerList();
 		do 
 		{
-			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
+			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi N,";
+			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
-		if ((loop == 'Y') || (loop == 'y')) firstTurn();
-		else return;
+		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'N' && loop != 'n');
+		if ((loop == 'R') || (loop == 'r'))
+		{
+			while (playerList->numero != NUMERO_GIOCATORI) playerList = playerList->next;
+			firstTurn(true);
+		}
+		else if ((loop == 'N') || (loop == 'n'))
+		{
+			deletePlayerList();
+			firstTurn(false);
+		}
+		else
+		{
+			deletePlayerList();
+			return;
+		}
 	}
 }

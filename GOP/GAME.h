@@ -35,8 +35,7 @@ protected:
 	void endGame(bool);
 public:
 	GAME();
-
-	void firstTurn();
+	void firstTurn(bool);
 };
 
 #endif
