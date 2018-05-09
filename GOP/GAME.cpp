@@ -33,6 +33,7 @@ void GAME::addToPosition(int num)//funzione utile per gli effetti di movimento s
 void GAME::addPoints(int num)
 {
 	playerList->points = playerList->points + num;
+	if (playerList->points > 500) playerList->points = 500;
 }
 
 void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
@@ -324,7 +325,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 			return;
 		}
 		tabTypeTranslate();
-		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 250))
+		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
 		{
 			endGame(true); //True quando il gioco finisce in modo normale
 			return;
@@ -336,7 +337,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		cout << "\nIl giocatore " << playerList->name << " salta il turno.";
 		playerList->jumpTurn = false;
 	}
-	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 250))//True quando il gioco finisce in modo normale
+	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))//True quando il gioco finisce in modo normale
 	{
 		endGame(true);
 		return;
@@ -356,16 +357,12 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 			cout << "\nclassifica e tira di nuovo il dado.\n";
 		}
 	} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
-	if ((loop == 'Y') || (loop == 'y'))//False quando il gioco è interrotto dall'utente
+	if ((loop == 'Y') || (loop == 'y'))
 	{
-		endGame(false);
+		endGame(false);//False quando il gioco è interrotto dall'utente
 		return;
 	}
-	else// if ((loop == 'N') || (loop == 'n'))
-	//{
-		GAME::nextTurn();
-	//	return;
-	//}
+	else GAME::nextTurn();
 	return;
 }
 
