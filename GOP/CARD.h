@@ -14,7 +14,7 @@ class CARD : public GAME
 {
 public:
 	ptCARD next;
-	int type ;
+	int type, len;
 	int randomCard();
 	CARD();
 };

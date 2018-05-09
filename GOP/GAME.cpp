@@ -272,6 +272,7 @@ void GAME::createDeck(int lenght)//Crea lista circolare di carte con testa in pt
 {
 	ptDeck = new CARD();
 	ptCARD tmp = ptDeck;
+	ptDeck->len = lenght;
 	for (int i = 0; i < lenght; i++)
 	{
 		tmp->type = tmp->randomCard();
@@ -290,7 +291,8 @@ void GAME::createDeck(int lenght)//Crea lista circolare di carte con testa in pt
 void GAME::deleteDeck()//Distrugge la sovrastante
 {
 	ptCARD tmp;
-	for (int i = 0; i < NUMERO_GIOCATORI; i++)
+	int len = ptDeck->len;
+	for (int i = 0; i < len; i++)
 	{
 		tmp = ptDeck->next;
 		delete ptDeck;
@@ -376,11 +378,12 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		cin >> loop;
 		if ((loop == 'H') || (loop == 'h'))
 		{
-			cout << "REGOLE:\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha ";
+			cout << "REGOLE:\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha";
 			cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
-			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone, o quando raggiunge 500 punti.";
-			cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in ";
-			cout << "\nclassifica, tira di nuovo il dado, ottieni 50 punti e ottieni 100 punti.\n";
+			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone o quando raggiunge 500 punti.";
+			cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in";
+			cout << "\nclassifica, tira di nuovo il dado, ottieni 50 punti e ottieni 100 punti.";
+			cout << "\nLa frequenza degli effetti di carte e caselle e\' pesata al loro effetto.\n";
 		}
 	} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
 	if ((loop == 'Y') || (loop == 'y'))
