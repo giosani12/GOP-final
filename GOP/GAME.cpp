@@ -126,29 +126,55 @@ void GAME::cardTypeTranslate()//chiamante per gli effetti del mazzo di carte
 }
 
 
-void GAME::getFirst(ptPLAYER *out)//funzione che restituisce un array di puntatori al (o ai) giocatore primo in classifica 
+void GAME::getFirst(ptPLAYER *out, bool points)//funzione che restituisce un array di puntatori al (o ai) giocatore primo in classifica 
 {
 	int i, counter = 0;
 	bool found = false;
 	ptPLAYER ptTMP = playerList;
-	for (i = ptTab->lenght; ((i > 0) && !found); i--)
+	if (!points)
 	{
-		for (int j = 0; j<NUMERO_GIOCATORI; j++)
+		for (i = ptTab->lenght; ((i > 0) && !found); i--)
 		{
-			if ((i == playerList->position) && !found)
+			for (int j = 0; j < NUMERO_GIOCATORI; j++)
 			{
-				out[0] = playerList;
-				found = true;
-				counter++;
-				out[counter] = NULL;
+				if ((i == playerList->position) && !found)
+				{
+					out[0] = playerList;
+					found = true;
+					counter++;
+					out[counter] = NULL;
+				}
+				else if ((i == playerList->position) && found)
+				{
+					out[counter] = playerList;
+					counter++;
+					out[counter] = NULL;
+				}
+				playerList = playerList->next;
 			}
-			else if ((i == playerList->position) && found)
+		}
+	}
+	else
+	{
+		for (i = 500; ((i > 0) && !found); i--)
+		{
+			for (int j = 0; j < NUMERO_GIOCATORI; j++)
 			{
-				out[counter] = playerList;
-				counter++;
-				out[counter] = NULL;
+				if ((i == playerList->points) && !found)
+				{
+					out[0] = playerList;
+					found = true;
+					counter++;
+					out[counter] = NULL;
+				}
+				else if ((i == playerList->points) && found)
+				{
+					out[counter] = playerList;
+					counter++;
+					out[counter] = NULL;
+				}
+				playerList = playerList->next;
 			}
-			playerList = playerList->next;
 		}
 	}
 	playerList = ptTMP;
@@ -158,7 +184,7 @@ void GAME::getFirst(ptPLAYER *out)//funzione che restituisce un array di puntato
 void GAME::swapWithFirst()//scambia la posizione del giocatore corrente con il primo e viceversa (funziona anche con più giocatori a pari merito)
 {
 	ptPLAYER *first = new ptPLAYER[NUMERO_GIOCATORI + 1];
-	getFirst(first);
+	getFirst(first,false);
 	int temp = first[0]->position, i = 0;
 	while (first[i] != NULL)
 	{
@@ -324,7 +350,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 			return;
 		}
 		tabTypeTranslate();
-		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 250))
+		if (playerList->position >= ptTab->lenght)
 		{
 			endGame(true); //True quando il gioco finisce in modo normale
 			return;
@@ -336,7 +362,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		cout << "\nIl giocatore " << playerList->name << " salta il turno.";
 		playerList->jumpTurn = false;
 	}
-	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 250))//True quando il gioco finisce in modo normale
+	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))//True quando il gioco finisce in modo normale
 	{
 		endGame(true);
 		return;
@@ -376,7 +402,8 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 	if (end)
 	{
 		ptPLAYER *tmp = new ptPLAYER[1];
-		getFirst(tmp);
+		if (playerList->position >= ptTab->lenght) getFirst(tmp, false);
+		else getFirst(tmp, true);
 		cout << "\nLa partita e\' terminata.\nIl giocatore " << tmp[0]->name << " ha vinto! Consulta qui sotto la classifica finale";
 		printChart();
 		delete ptTab;

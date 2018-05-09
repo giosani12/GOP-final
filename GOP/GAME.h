@@ -23,7 +23,7 @@ protected:
 	void throwDice();
 	void tabTypeTranslate();
 	void cardTypeTranslate();
-	void getFirst(ptPLAYER*);
+	void getFirst(ptPLAYER*, bool);
 	void swapWithFirst();
 	void createPlayerList();
 	void deletePlayerList();
