@@ -409,9 +409,9 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deletePlayerList();
 		do
 		{
-			cout << "Se vuoi ricominciare scrivi Y, se vuoi uscire scrivi N (non case sensitive)";
+			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
+		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
 		if ((loop == 'Y') || (loop == 'y')) firstTurn();
 		else return;
 	}
@@ -424,9 +424,9 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deletePlayerList();
 		do 
 		{
-			cout << "Se vuoi ricominciare scrivi Y, se vuoi uscire scrivi N (non case sensitive)";
+			cout << "\nSe vuoi ricominciare scrivi Y, se vuoi uscire scrivi E (non case sensitive)";
 			cin >> loop;
-		} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
+		} while (loop != 'Y' && loop != 'y' && loop != 'E' && loop != 'e');
 		if ((loop == 'Y') || (loop == 'y')) firstTurn();
 		else return;
 	}
