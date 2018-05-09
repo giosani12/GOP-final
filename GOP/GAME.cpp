@@ -377,9 +377,9 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		{
 			cout << "REGOLE:\nAd ogni turno il giocatore tira il dado e si sposta sul tabellone in base al numero ottenuto, ogni casella ha ";
 			cout << "\nun effetto(traduzione sottostante) e ad ogni turno il giocatore pesca anche una carta, anch'essa con un effetto.";
-			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone.";
+			cout << "\nUn giocatore vince quando riesce ad arrivare in fondo al tabellone, o quando raggiunge 500 punti.";
 			cout << "\nEffetti carte: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due, scambia con primo in ";
-			cout << "\nclassifica e tira di nuovo il dado.\n";
+			cout << "\nclassifica, tira di nuovo il dado, ottieni 50 punti e ottieni 100 punti.\n";
 		}
 	} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
 	if ((loop == 'Y') || (loop == 'y'))//False quando il gioco è interrotto dall'utente
