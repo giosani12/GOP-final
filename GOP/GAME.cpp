@@ -215,6 +215,21 @@ void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori 
 		}
 	}
 	NUMERO_GIOCATORI = count;
+	cout << "\nNUMERO MASSIMO DI CARATTERI CONSENTITI: 20";
+	cout << "\nInserire nome per giocatore " << i << ":";
+	cin.ignore(1, EOF);
+	cin.getline(tmpName, 21);
+	playerList = new PLAYER(1, tmpName);
+	ptHead = playerList;
+	while (i < NUMERO_GIOCATORI)
+	{
+		i++;
+		cout << "\nInserire nome per giocatore " << i << ":";
+		cin.getline(tmpName, 21);
+		tmp = new PLAYER(i, tmpName);
+		playerList->next = tmp;
+		playerList = tmp;
+	}
 	/*cin.ignore(200, '\n');
 LABEL:
 	cout << "\nInserire nome per giocatore " << i << ": ";
