@@ -301,7 +301,7 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 {
 	bool found = false;
 	int pos = 0;
-	cout << "\nCLASSIFICA:\n|Posizione\t|Punti\t|Posizione|Nome Giocatore";
+	cout << "\nCLASSIFICA:\n|\t   Posizione  \t\t| \tPunti\t\t|\tNumero Casella\t\t|\tNome Giocatore";
 	for (int i = ptTab->lenght; i > 0; i--)
 	{
 		for (int j = 0; j<NUMERO_GIOCATORI; j++)
@@ -309,12 +309,12 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 			if ((i == playerList->position) && !found)
 			{
 				pos = pos + 1;
-				cout << "\n|" << pos << "\t\t|" << playerList->points << "\t|" << playerList->position << "\t  |" << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t    " << playerList->name;
 				found = true;
 			}
 			else if ((i == playerList->position) && found)
 			{
-				cout << "\n|" << pos << "\t\t|" << playerList->points << "\t|" << playerList->position << "\t  |" << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t    " << playerList->name;
 			}
 			playerList = playerList->next;
 		}
