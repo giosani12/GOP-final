@@ -1,0 +1,32 @@
+<h1>Gioco dell'oca pazza</h1>
+<b>Giocatori:</b> 1 - &#8734; <br>
+Introduzione:
+<h5>Funzionalità: </h5>
+A inizio partita viene generato un tabellone di ampiezza casuale compresa tra 55 e 75 caselle,
+il gioco sfrutta inoltre un mazzo di carte anch'esso
+di dimensione variabile tra 40 e 60 elementi.
+Ogni casella così come ogni carta ha un valore associato a cui corrisponde un effetto.
+
+  <h5>Tipi di caselle:</h5>
+  • Avanza o arretra di 1 o 2 caselle <br>
+  • Salta il turno <br>
+  • Scambia la tua posizione con quella del primo in classifica <br>
+  • Pesca una carta <br>
+  • Torna alla posizione iniziale <br>
+  • Casella vuota <br>
+  • Tira di nuovo il dado <br>
+  
+  <h5>Tipi di carte: </h5>
+  • Avanza o arretra di 1 o 2 caselle <br>
+  • Tira di nuovo il dado <br>
+  • Scambia la tua posizione con quella del primo in classifica <br>
+  • Ottieni punti (50 o 100) <br>
+  
+  <h5>Scelte implementative:</h5>
+  I giocatori e il mazzo sono implementati tramite l'uso di liste circolari (ovvero l'ultimo elemento della lista punta al primo),
+  questo facilita l'andamento ciclico del gioco ed è un'implementazione verosimile alla realtà, con la sola differenza che il mazzo, una volta finito,
+  non viene rimescolato ma il pattern delle carte è fisso.
+  Per la gestione delle probabilità riguardanti i vari effetti di carte e caselle abbiamo utilizzato un array di interi caricato con numeri ripetuti e compresi tra 0 e il numero di effetti.
+  Le carte e le caselle sono riempite grazie ad un numero casuale e all'operatore resto, questa coppia corrisponde all'indice dell'array (solo in fase di assegnamento)
+  
+  
