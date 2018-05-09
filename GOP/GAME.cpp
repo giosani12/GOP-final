@@ -418,24 +418,27 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		printChart();
 		delete ptTab;
 		deleteDeck();
-		deletePlayerList();
 		do
 		{
-			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi N,";
+			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi D,";
 			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
 			cin >> loop;
-		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'N' && loop != 'n');
+		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'D' && loop != 'd');
 		if ((loop == 'R') || (loop == 'r'))
 		{
 			while (playerList->numero != NUMERO_GIOCATORI) playerList = playerList->next;
 			firstTurn(true);
 		}
-		else if ((loop == 'N') || (loop == 'n'))
+		else if ((loop == 'D') || (loop == 'd'))
 		{
 			deletePlayerList();
 			firstTurn(false);
 		}
-		else return;
+		else
+		{
+			deletePlayerList();
+			return;
+		}
 	}
 	else if (!end)
 	{
@@ -445,16 +448,16 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deleteDeck();
 		do 
 		{
-			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi N,";
+			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi D,";
 			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
 			cin >> loop;
-		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'N' && loop != 'n');
+		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'D' && loop != 'd');
 		if ((loop == 'R') || (loop == 'r'))
 		{
 			while (playerList->numero != NUMERO_GIOCATORI) playerList = playerList->next;
 			firstTurn(true);
 		}
-		else if ((loop == 'N') || (loop == 'n'))
+		else if ((loop == 'D') || (loop == 'd'))
 		{
 			deletePlayerList();
 			firstTurn(false);
