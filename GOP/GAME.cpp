@@ -352,22 +352,21 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 		}
 		tabTypeTranslate();
 		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
-		if (playerList->position >= ptTab->lenght)
 		{
 			endGame(true); //True quando il gioco finisce in modo normale
 			return;
 		}
 		drawCard();
+		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
+		{
+			endGame(true); //True quando il gioco finisce in modo normale
+			return;
+		}
 	}
 	else
 	{
 		cout << "\nIl giocatore " << playerList->name << " salta il turno.";
 		playerList->jumpTurn = false;
-	}
-	if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))//True quando il gioco finisce in modo normale
-	{
-		endGame(true);
-		return;
 	}
 	ptTab->printTable();
 	printChart();
@@ -386,7 +385,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 	} while (loop != 'Y' && loop != 'y' && loop != 'N' && loop != 'n');
 	if ((loop == 'Y') || (loop == 'y'))
 	{
-		endGame(false);//False quando il gioco è interrotto dall'utente
+		endGame(false); //False quando il gioco è interrotto dall'utente
 		return;
 	}
 	else GAME::nextTurn();
