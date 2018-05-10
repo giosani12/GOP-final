@@ -8,25 +8,58 @@ di dimensione variabile tra 40 e 60 elementi.
 Ogni casella così come ogni carta ha un valore associato a cui corrisponde un effetto.
 
   <h5>Tipi di caselle:</h5>
-  • Avanza o arretra di 1 o 2 caselle <br>
-  • Salta il turno <br>
-  • Scambia la tua posizione con quella del primo in classifica <br>
-  • Pesca una carta <br>
-  • Torna alla posizione iniziale <br>
-  • Casella vuota <br>
-  • Tira di nuovo il dado <br>
+  • Avanza di 1 casella (Prob: 12%) <br>
+  • Avanza di 2 caselle  (Prob: 8%) <br>
+  • Arretra di 1 casella (Prob: 12%) <br>
+  • Arretra di 2 caselle (Prob: 8%) <br>
+  • Salta il turno (Prob: 8%) <br>
+  • Scambia la tua posizione con quella del primo in classifica (Prob: 6%) <br>
+  • Pesca una carta (Prob: 10%) <br>
+  • Torna alla posizione iniziale (Prob: 6%) <br>
+  • Casella vuota (Prob: 16%) <br>
+  • Tira di nuovo il dado (Prob: 14%) <br>
   
   <h5>Tipi di carte: </h5>
-  • Avanza o arretra di 1 o 2 caselle <br>
-  • Tira di nuovo il dado <br>
-  • Scambia la tua posizione con quella del primo in classifica <br>
-  • Ottieni punti (50 o 100) <br>
+  • Avanza di 1 casella (Prob: 16%) <br> 
+  • Avanza di 2 caselle (Prob: 8%) <br>
+  • Arretra di 1 casella (Prob: 16%) <br>
+  • Arretra di 2 caselle (Prob: 8%) <br>
+  • Tira di nuovo il dado (Prob: 12%) <br>
+  • Scambia la tua posizione con quella del primo in classifica (Prob: 4%) <br>
+  • Ottieni 50 punti (Prob: 20%) <br>
+  • Ottieni 100 punti (Prob: 16%) <br>
   
   <h5>Scelte implementative:</h5>
-  I giocatori e il mazzo sono implementati tramite l'uso di liste circolari (ovvero l'ultimo elemento della lista punta al primo),
-  questo facilita l'andamento ciclico del gioco ed è un'implementazione verosimile alla realtà, con la sola differenza che il mazzo, una volta finito,
-  non viene rimescolato ma il pattern delle carte è fisso.
-  Per la gestione delle probabilità riguardanti i vari effetti di carte e caselle abbiamo utilizzato un array di interi caricato con numeri ripetuti e compresi tra 0 e il numero di effetti.
-  Le carte e le caselle sono riempite grazie ad un numero casuale e all'operatore resto, questa coppia corrisponde all'indice dell'array (solo in fase di assegnamento)
+  I giocatori e il mazzo sono implementati tramite l'uso di liste circolari (ovvero liste nelle quali l'ultimo elemento punta al primo),
+  questo facilita l'andamento ciclico del gioco ed è un'implementazione verosimile alla realtà, con la sola differenza che il mazzo,
+  una volta finito, non viene rimescolato ma il pattern delle carte è fisso.
+  Per la gestione delle probabilità riguardanti i vari effetti di carte e caselle abbiamo utilizzato un array di interi caricato con
+  numeri ripetuti e compresi tra 0 e il numero di effetti.
+  Le carte e le caselle sono riempite grazie ad un numero casuale e all'operatore resto, questa coppia corrisponde all'indice dell'array 
+  (solo in fase di assegnamento) e tramite uno switch case viene scelto l'effetto da attivare.
+  Per prendere in input i nomi dei giocatori (da max 20 caratteri) abbiamo usato il cin.getline in maniera tale da poter inserire
+  anche degli spazi all'interno del nome e vengono creati array di char.
+  
+  Programmazione a oggetti
+  Usando la programmazione a oggetti abbiamo creato la classe madre GAME e le sue classi figlie TABLE, PLAYER e CARD
+  
+  PLAYER
+  Nome -> nome del giocatore (max 20 caratteri)
+  Numero -> numero che viene assegnato durante la creazione dei vari giocatori all'inizio del gioco
+  Posizione -> posizione che il giocatore ha nel tabellone
+  Punti -> punti acquisiti durante il gioco (inizializzati a 0)
+  Salta il turno -> variabile booleana che indica se il giocatore deve saltare il prossimo turno
+  Puntatore a PLAYER -> puntatore utilizzato per creare la lista circolare
+  
+  TABLE
+  Puntatore a interi -> 
+  Bool valid -> 
+  Lunghezza -> numero di caselle del tabellone
+  
+  CARD
+  Tipo -> intero che viene generato casualmente 
+  Puntatore a carta
+  
+  
   
   
