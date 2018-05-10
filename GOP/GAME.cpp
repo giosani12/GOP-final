@@ -22,11 +22,12 @@ void GAME::throwDice()//funzione del lancio dado
 	int j = (rand() % 6) + 1;
 	playerList->position = playerList->position + j;
 	if (playerList->position > ptTab->lenght) playerList->position = ptTab->lenght;
-	cout << "\nIl giocatore " << playerList->name << " tira il dado ed esce " << j << ", ora " << playerList->name << " e\' in posizione " << playerList->position << ".";
+	cout << "\nIl giocatore " << playerList->name << " tira il dado ed esce " << j << ", ora " << playerList->name << " e\' in posizione ";
+	cout << playerList->position << ".";
 }
 
-void GAME::addToPosition(int num)//funzione utile per gli effetti di movimento sulla tabella, somma alla posione del giocatore il numero in input
-{
+void GAME::addToPosition(int num)   //funzione utile per gli effetti di movimento sulla tabella,
+{									//somma alla posione del giocatore il numero in input
 	if ((num + playerList->position) > 0)
 	{
 		playerList->position = playerList->position + num;
@@ -50,19 +51,23 @@ void GAME::tabTypeTranslate()//chiamante per gli effetti della tabella
 		break;
 	case 1:
 		addToPosition(1);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di una casella e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di una casella e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 2:
 		addToPosition(2);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di due caselle e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato avanti di due caselle e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 3:
 		addToPosition(-1);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di una casella e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di una casella e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 4:
 		addToPosition(-2);
-		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di due caselle ed ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto casella: il giocatore " << playerList->name << " e\' andato indietro di due caselle ed ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 5:
 		swapWithFirst();
@@ -95,19 +100,23 @@ void GAME::cardTypeTranslate()//chiamante per gli effetti del mazzo di carte
 	{
 	case 0:
 		addToPosition(1);
-		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato avanti di una casella e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato avanti di una casella e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 1:
 		addToPosition(2);
-		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato avanti di due caselle e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato avanti di due caselle e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 2:
 		addToPosition(-1);
-		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato indietro di una casella e ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato indietro di una casella e ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 3:
 		addToPosition(-2);
-		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato indietro di due caselle ed ora e\' in posizione " << playerList->position;
+		cout << "\nEffetto carta: il giocatore " << playerList->name << " e\' andato indietro di due caselle ed ora e\' in posizione ";
+		cout << playerList->position;
 		break;
 	case 4:
 		swapWithFirst();
@@ -187,8 +196,8 @@ void GAME::getFirst(ptPLAYER *out, bool points)//funzione che restituisce un arr
 }
 
 
-void GAME::swapWithFirst()//scambia la posizione del giocatore corrente con il primo e viceversa (funziona anche con più giocatori a pari merito)
-{
+void GAME::swapWithFirst()  //scambia la posizione del giocatore corrente con il primo e viceversa
+{							//(funziona anche con più giocatori a pari merito)
 	ptPLAYER *first = new ptPLAYER[NUMERO_GIOCATORI + 1];
 	getFirst(first,false);
 	int temp = first[0]->position, i = 0;
@@ -201,8 +210,8 @@ void GAME::swapWithFirst()//scambia la posizione del giocatore corrente con il p
 	playerList->position = temp;
 }
 
-void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori (lista circolare) prendendo da input numero e nome dei giocatori.
-{
+void GAME::createPlayerList() //Inizializza il puntatore alla lista di giocatori (lista circolare)
+{							  //prendendo da input numero e nome dei giocatori.
 	int i = 1, count = 0;
 	char tmpName[21];
 	ptPLAYER tmp, ptHead;
@@ -266,10 +275,10 @@ LABEL:
 		playerList = tmp;
 		i++;
 	}*/
-	playerList->next = ptHead;//in uscita playerlist punta all'ultimo giocatore perchè il primo turno inizia con un playerlist=playerlist->next
+	playerList->next = ptHead; //in uscita playerlist punta all'ultimo giocatore perchè il primo turno inizia con un playerlist=playerlist->next
 }
 
-void GAME::deletePlayerList()//Distrugge la lista di giocatori partendo dal puntatore al giocatore attuale
+void GAME::deletePlayerList() //Distrugge la lista di giocatori partendo dal puntatore al giocatore attuale
 {
 	ptPLAYER tmp;
 	for (int i = 0; i < NUMERO_GIOCATORI; i++)
@@ -280,13 +289,13 @@ void GAME::deletePlayerList()//Distrugge la lista di giocatori partendo dal punt
 	}
 }
 	
-void GAME::drawCard()//pesca una carta casuale dal mazzo e ne esegue l'effetto.
+void GAME::drawCard() //pesca una carta casuale dal mazzo e ne esegue l'effetto.
 {
 	cardTypeTranslate();
 	ptDeck = ptDeck->next;
 }
 
-void GAME::createDeck()//Crea lista circolare di carte con testa in ptDeck
+void GAME::createDeck() //Crea lista circolare di carte con testa in ptDeck
 {
 	ptDeck = new CARD();
 	ptCARD tmp = ptDeck;
@@ -302,7 +311,7 @@ void GAME::createDeck()//Crea lista circolare di carte con testa in ptDeck
 	tmp->next = ptDeck;
 }
 
-void GAME::deleteDeck()//Distrugge la sovrastante
+void GAME::deleteDeck() //Distrugge la sovrastante
 {
 	ptCARD tmp;
 	for (int i = 0; i < deckLen; i++)
@@ -313,7 +322,7 @@ void GAME::deleteDeck()//Distrugge la sovrastante
 	}
 }
 
-void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
+void GAME::printChart() //Stampa la lista dei giocatori ordinati per posizione
 {
 	bool found = false;
 	int pos = 0;
@@ -325,12 +334,14 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 			if ((i == playerList->position) && !found)
 			{
 				pos = pos + 1;
-				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   " << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   ";
+				cout << playerList->name;
 				found = true;
 			}
 			else if ((i == playerList->position) && found)
 			{
-				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   " << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   ";
+				cout << playerList->name;
 			}
 			playerList = playerList->next;
 		}
@@ -339,7 +350,7 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 	cout << endl;
 }
 
-void GAME::firstTurn(bool same_players)//Inizializza la lista di giocatori, il mazzo e la tabella
+void GAME::firstTurn(bool same_players) //Inizializza la lista di giocatori, il mazzo e la tabella
 {
 	cout << "Questo e\' il gioco GOP per il progetto di programmazione\n";
 	cout << "\n\t\t\t\t\t\t    REGOLE:\n";
@@ -372,7 +383,7 @@ void GAME::firstTurn(bool same_players)//Inizializza la lista di giocatori, il m
 	return;
 }
 
-void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possibilita\' di uscire o ricominciare
+void GAME::nextTurn() //Esegue la routine di un turno standard offrendo la possibilita\' di uscire o ricominciare
 {
 	char loop;
 	playerList = playerList->next;
@@ -429,7 +440,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 }
 
 
-void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
+void GAME::endGame(bool end) //Fa pulizia del gioco appena finito
 {
 	char loop;
 	if (end)

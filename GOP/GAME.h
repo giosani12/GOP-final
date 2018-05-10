@@ -14,7 +14,8 @@ class GAME
 {
 protected:
 	ptPLAYER playerList;
-	int NUMERO_GIOCATORI, deckLen;
+	int NUMERO_GIOCATORI;
+	int deckLen;
 	ptCARD ptDeck;
 	ptTABLE ptTab;
 
