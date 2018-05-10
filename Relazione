@@ -1,5 +1,5 @@
 <h1>Gioco dell'oca pazza</h1>
-<b>Giocatori:</b> 1 - &#8734; <br>
+<b>Giocatori:</b> 2 - &#8734; <br>
 Introduzione:
 <h5>Funzionalità: </h5>
 A inizio partita viene generato un tabellone di ampiezza casuale compresa tra 55 e 75 caselle,
@@ -30,6 +30,7 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
   • Ottieni 100 punti (Prob: 16%) <br>
   
   <h5>Scelte implementative:</h5>
+  Usando la programmazione a oggetti abbiamo creato la classe madre GAME e le sue classi figlie TABLE, PLAYER e CARD.
   I giocatori e il mazzo sono implementati tramite l'uso di liste circolari (ovvero liste nelle quali l'ultimo elemento punta al primo),
   questo facilita l'andamento ciclico del gioco ed è un'implementazione verosimile alla realtà, con la sola differenza che il mazzo,
   una volta finito, non viene rimescolato ma il pattern delle carte è fisso.
@@ -37,36 +38,76 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
   numeri ripetuti e compresi tra 0 e il numero di effetti.
   Le carte e le caselle sono riempite grazie ad un numero casuale e all'operatore resto, questa coppia corrisponde all'indice dell'array 
   (solo in fase di assegnamento) e tramite uno switch case viene scelto l'effetto da attivare.
-  Per prendere in input i nomi dei giocatori (da max 20 caratteri) abbiamo usato il cin.getline in maniera tale da poter inserire
-  anche degli spazi all'interno del nome e vengono creati array di char.
+  Per prendere in input i nomi dei giocatori (da max 20 caratteri) abbiamo usato il cin.getline.
   
-  Programmazione a oggetti
-  Usando la programmazione a oggetti abbiamo creato la classe madre GAME e le sue classi figlie TABLE, PLAYER e CARD
+  GAME
+  Numero Giocatori -> Varibile globale che come dice il nome contiene il numero dei giocatori e lo utilizziamo per scorrere la lista.
+  Lunghezza deck -> Numero di carte all'interno del deck
+  Puntatore a card -> Punta al mazzo di carte..
+  Puntatore a player -> Punta al giocatore corrente.
+  Puntatore a table -> Punta all'array di interi ovvero alla tabella.
+  
+  addToPosition -> metodo che modifica la posizione del giocatore nella tabella, lo utilizziamo per i vari effetti di spostamento
+  e quando tiriamo il dado.
+  throwDice -> metodo che simula il lancio del dado chiamando addToPosition.
+  tabTypeTranslate -> metodo che legge il tipo della casella e tramite uno switch case attiva uno dei vari effetti.
+  cardTypeTranslate -> metodo che legge il tipo della carta e tramite uno switch case attiva uno dei vari effetti.
+  GetFirst -> metodo che prende in input una variabile booleana e scorre tutta la tabella a partire dal traguardo, 
+  effettuando tipi di controllo diversi in base alla chiamata.
+  Per ogni casella scorre la lista dei player e, nel caso in cui il booleano sia falso, se nessun giocatore è lì ripete il controllo
+  sulla casella precedente e si ferma quando trova uno o più giocatori; invece nel caso in cui il booleano sia vero,
+  si ferma quando trova il giocatore che ha vinto perchè ha raggiunto il numero necessario di punti.
+  In ogni caso restituisce il puntatore alla testa di un array di puntatori ai giocatori corrispondenti.
+  Viene chiamata nell'effetto SwapWithFirs e nel metodo endGame.
+  swapWithFirst -> metodo che scambia la posizione del giocatore che attivo questo effetto con quella del primo giocatore, 
+  nel caso in cui ci sia più di un giocatore, vengono spostati anche gli altri. Viene chiamato dagli effetti di caselle e carte.
+  createPlayerList -> metodo che crea una lista circolare di giocatori, viene chiamato in firstTurn.
+  deletePlayerList -> metodo che cancella la lista dei giocatori, viene chiamato in endGame.
+  createDeck -> metodo che crea una lista circolare di carte, viene chiamato in firstTurn.
+  deleteDeck -> metodo che cancella la lista di carte, viene chiamato in endGame.
+  drawCard -> metodo che chiama cardTypeTranslate e sposta il puntatore della lista di carte all'elemento successivo. Viene chiamato
+  in nextTurn e dagli effetti delle caselle.
+  printChart -> metodo che stampa la classifica. Viene chiamato in endGame.
+  firstTurn -> metodo che inizializza le varie componenti del gioco e stampa le regole.
+  nextTurn -> metodo che fa iniziare il gioco con il primo turno e richiama se stesso per far continuare il gioco a meno che non venga
+  chiamato endGame. Scorre la lista dei giocatori in modo che ogni giocatore lanci il dado e peschi solo una volta per turno. 
+  Offre la possibilità di uscire dalla partita, di stampare le regole o di continuare a giocare alla fine di ogni turno.
+  endGame -> metodo che viene chiamato in nextTurn e fa terminare il gioco. Offre anche la possibilità di ricominciare la partita, sia 
+  con gli stessi giocatori che con altri.
+  
   
   PLAYER
-  Nome -> nome del giocatore (max 20 caratteri)
-  Numero -> numero che viene assegnato durante la creazione dei vari giocatori all'inizio del gioco
-  Posizione -> posizione che il giocatore ha nel tabellone
-  Punti -> punti acquisiti durante il gioco (inizializzati a 0)
-  Salta il turno -> variabile booleana che indica se il giocatore deve saltare il prossimo turno
-  Puntatore a PLAYER -> puntatore utilizzato per creare la lista circolare
+  Nome -> nome del giocatore (max 20 caratteri).
+  Numero -> numero che viene assegnato durante la creazione dei vari giocatori all'inizio del gioco.
+  Posizione -> posizione che il giocatore ha nel tabellone.
+  Punti -> punti acquisiti durante il gioco (inizializzati a 0).
+  Salta il turno -> variabile booleana che indica se il giocatore deve saltare il prossimo turno.
+  Puntatore a PLAYER -> puntatore utilizzato per creare la lista circolare.
   
   TABLE
   Puntatore a interi -> 
   Bool valid -> 
-  Lunghezza -> numero di caselle del tabellone
+  Lunghezza -> numero di caselle del tabellone.
+  
+  getType -> metodo che ritorna il tipo della casella, chiamato in tabTypeTranslator.
+  printTable -> metodo che stampa la tabella, chiamato in nextTurn.
   
   CARD
   Tipo -> intero che viene generato casualmente 
   Puntatore a carta -> Per creare il mazzo di carte
   
   
-  Organizzazione del team:
+  Organizzazione del gruppo:
   Abbiamo usato Github per poter lavorare su diversi computer, poter condividere facilmente il codice fatto e avere una cronologia
   di tutte le modifiche apportate.
   Abbiamo usato MS Visual Studio 2017 per scrivere e testare il programma ed è stato molto comodo utilizzare l'estensione di GitHub
   direttamente dall'IDE.
   
+  Membri:
+  Francesco Filippi
+  Francesco Santilli
+  Giovanni Sani
   
+ 
   
   
