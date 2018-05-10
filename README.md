@@ -29,10 +29,6 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
  
  Non abbiamo utilizzato librerie grafiche.
  
- <h5>Come eseguire il programma: </h5>
- 
- 
- 
  <b>Componenti del gruppo: </b><br>
  Francesco Santilli<br>
  Francesco Filippi<br>
