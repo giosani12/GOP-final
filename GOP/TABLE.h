@@ -14,8 +14,8 @@ protected:
 	bool valid;
 public:
 	int lenght;
+
 	TABLE(int);
-	~TABLE();
 	int getType(int);
 	void printTable();
 };

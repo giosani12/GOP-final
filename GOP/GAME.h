@@ -14,7 +14,7 @@ class GAME
 {
 protected:
 	ptPLAYER playerList;
-	int NUMERO_GIOCATORI;
+	int NUMERO_GIOCATORI, deckLen;
 	ptCARD ptDeck;
 	ptTABLE ptTab;
 
@@ -28,14 +28,14 @@ protected:
 	void createPlayerList();
 	void deletePlayerList();
 	void drawCard();
-	void createDeck(int);
+	void createDeck();
 	void deleteDeck();
 	void printChart();
 	void nextTurn();
 	void endGame(bool);
 public:
 	GAME();
+	virtual ~GAME();
 	void firstTurn(bool);
 };
-
 #endif

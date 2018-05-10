@@ -9,16 +9,11 @@ TABLE::TABLE(int input)//costruttore tabella, inizializza tutti i campi e prende
 {
 	lenght = input;
 	valid = true;
-	int temp[35] = { 0,0,0,0,0,1,1,1,1,1,2,2,2,3,3,3,3,3,4,4,4,5,5,6,6,6,7,7,7,7,8,8,8,8,9 };
+	int temp[50] = { 0,0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,3,3,3,3,3,3,4,4,4,4,5,5,5,6,6,6,6,7,7,7,7,7,7,7,8,8,8,8,8,9,9,9 };
 	pt = new int[lenght];
 	pt[0] = 0;
-	for (int i = 1; i < lenght - 1; i++) pt[i] = temp[rand() % 35];
+	for (int i = 1; i < lenght - 1; i++) pt[i] = temp[rand() % 50];
 	pt[lenght - 1] = 0;
-}
-
-TABLE::~TABLE()
-{
-	valid = false;
 }
 
 int TABLE::getType(int input)//traduttore da numero casella a tipo di casella
@@ -45,8 +40,8 @@ void TABLE::printTable()//stampa la tabella e il traduttore per i tipi di casell
 	}
 	else
 	{
-		cout << "\nErrore: essuna tabella da stampare." << endl;
+		cout << "\nErrore: nessuna tabella da stampare." << endl;
 	}
-	cout << "Traduttore:\n0=casella vuota\t	1=vai avanti di uno\t2=vai avanti di due\t3=vai indietro di 1\t4=vai indietro di 2";
+	cout << "0=casella vuota\t	1=vai avanti di uno\t2=vai avanti di due\t3=vai indietro di 1\t4=vai indietro di 2";
 	cout << "\n5=scambia col primo\t6=salta il turno\t7=tira di nuovo il dado\t8=pesca una carta\t9=torna all'inizio";
 }

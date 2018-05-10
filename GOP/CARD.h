@@ -9,14 +9,13 @@ typedef CARD* ptCARD;
 
 #include "GAME.h"
 
-
 class CARD : public GAME
 {
 public:
 	ptCARD next;
-	int type, len;
+	int type;
+
 	int randomCard();
 	CARD();
 };
-
 #endif

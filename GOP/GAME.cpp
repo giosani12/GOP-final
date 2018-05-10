@@ -9,7 +9,12 @@
 
 using namespace std;
 
-GAME::GAME() {
+GAME::GAME()
+{
+}
+
+GAME::~GAME()
+{
 }
 
 void GAME::throwDice()//funzione del lancio dado
@@ -202,7 +207,7 @@ void GAME::createPlayerList()//Inizializza il puntatore alla lista di giocatori 
 	char tmpName[21];
 	ptPLAYER tmp, ptHead;
 	tmpName[0] = '\0';
-	while (count < 1)
+	while (count < 2)
 	{
 		cout << "\nInserire numero giocatori: ";
 		cin >> count;
@@ -281,15 +286,14 @@ void GAME::drawCard()//pesca una carta casuale dal mazzo e ne esegue l'effetto.
 	ptDeck = ptDeck->next;
 }
 
-void GAME::createDeck(int lenght)//Crea lista circolare di carte con testa in ptDeck
+void GAME::createDeck()//Crea lista circolare di carte con testa in ptDeck
 {
 	ptDeck = new CARD();
 	ptCARD tmp = ptDeck;
-	ptDeck->len = lenght;
-	for (int i = 0; i < lenght; i++)
+	for (int i = 0; i < deckLen; i++)
 	{
 		tmp->type = tmp->randomCard();
-		if (i < lenght-1)
+		if (i < deckLen-1)
 		{
 			tmp->next = new CARD();
 			tmp = tmp->next;
@@ -301,8 +305,7 @@ void GAME::createDeck(int lenght)//Crea lista circolare di carte con testa in pt
 void GAME::deleteDeck()//Distrugge la sovrastante
 {
 	ptCARD tmp;
-	int len = ptDeck->len;
-	for (int i = 0; i < len; i++)
+	for (int i = 0; i < deckLen; i++)
 	{
 		tmp = ptDeck->next;
 		delete ptDeck;
@@ -322,12 +325,12 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 			if ((i == playerList->position) && !found)
 			{
 				pos = pos + 1;
-				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t    " << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   " << playerList->name;
 				found = true;
 			}
 			else if ((i == playerList->position) && found)
 			{
-				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t    " << playerList->name;
+				cout << "\n|\t\t" << pos << "\t\t|\t " << playerList->points << "\t\t|\t\t" << playerList->position << "\t\t|\t   " << playerList->name;
 			}
 			playerList = playerList->next;
 		}
@@ -336,7 +339,7 @@ void GAME::printChart()//Stampa la lista dei giocatori ordinati per posizione
 	cout << endl;
 }
 
-void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il mazzo e la tabella
+void GAME::firstTurn(bool same_players)//Inizializza la lista di giocatori, il mazzo e la tabella
 {
 	cout << "Questo e\' il gioco GOP per il progetto di programmazione\n";
 	cout << "\n\t\t\t\t\t\t    REGOLE:\n";
@@ -347,11 +350,12 @@ void GAME::firstTurn(bool same_player)//Inizializza la lista di giocatori, il ma
 	cout << "\nclassifica, tira di nuovo il dado, guadagna 50 punti e guadagna 100 punti.\n";
 	cout << "\nEffetti caselle: vai avanti di uno, vai avanti di due, vai indietro di uno, vai indietro di due,, scambia con primo in";
 	cout << "\nclassifica, tira di nuovo il dado, pesca una carta, torna all'inizio e salta il turno.\n";
-	createDeck(rand() % 20 + 40);
-	cout << "\nE\' stato creato un mazzo di " << ptDeck->len << " carte.\n";
+	deckLen = rand() % 20 + 40;
+	createDeck();
+	cout << "\nE\' stato creato un mazzo di " << deckLen << " carte.\n";
 	ptTab = new TABLE(rand() % 20 + 55);
 	cout << "\nE\' stato creato un tabellone di " << ptTab->lenght << " caselle.\n";
-	if (same_player)
+	if (same_players)
 	{
 		for (int j = 0; j < NUMERO_GIOCATORI; j++)
 		{
@@ -386,6 +390,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 			endGame(true); //True quando il gioco finisce in modo normale
 			return;
 		}
+		cout << "\nIl giocatore " << playerList->name << " pesca una carta.";
 		drawCard();
 		if ((playerList->position >= ptTab->lenght) || (playerList->points >= 500))
 		{
@@ -402,7 +407,7 @@ void GAME::nextTurn()//Esegue la routine di un turno standard offrendo la possib
 	printChart();
 	do
 	{
-		cout << "Se vuoi finire la partita scrivi Y, se vuoi continuare scrivi N, se bisogno di aiuto scrivi H (non case sensitive)\n";
+		cout << "Per finire la partita premi Y, per continuare premi N, se bisogno di aiuto premi H (non case sensitive)\n";
 		cin >> loop;
 		if ((loop == 'H') || (loop == 'h'))
 		{
@@ -438,8 +443,8 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deleteDeck();
 		do
 		{
-			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi D,";
-			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
+			cout << "\nPer ricominciare con gli stessi giocatori premi R, per ricominciare con giocatori diversi premi D,";
+			cout << "\nse invece vuoi uscire premi E (non case sensitive)";
 			cin >> loop;
 		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'D' && loop != 'd');
 		if ((loop == 'R') || (loop == 'r'))
@@ -466,8 +471,8 @@ void GAME::endGame(bool end)//Fa pulizia del gioco appena finito
 		deleteDeck();
 		do 
 		{
-			cout << "\nSe vuoi ricominciare con gli stessi giocatori scrivi R, se vuoi ricominciare con giocatori diversi premi D,";
-			cout << "\nse vuoi uscire scrivi E(non case sensitive)";
+			cout << "\nPer ricominciare con gli stessi giocatori premi R, per ricominciare con giocatori diversi premi D,";
+			cout << "\nse invece vuoi uscire premi E (non case sensitive)";
 			cin >> loop;
 		} while (loop != 'R' && loop != 'r' && loop != 'E' && loop != 'e' && loop != 'D' && loop != 'd');
 		if ((loop == 'R') || (loop == 'r'))

@@ -15,9 +15,8 @@ public:
 	int points;
 	char name[20];
 	ptPLAYER next;
+
 	PLAYER();
 	PLAYER(int, char[]);
-	~PLAYER();
-	void setName(char[]);
 };
 #endif
