@@ -58,7 +58,14 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
   
   CARD
   Tipo -> intero che viene generato casualmente 
-  Puntatore a carta
+  Puntatore a carta -> Per creare il mazzo di carte
+  
+  
+  Organizzazione del team:
+  Abbiamo usato Github per poter lavorare su diversi computer, poter condividere facilmente il codice fatto e avere una cronologia
+  di tutte le modifiche apportate.
+  Abbiamo usato MS Visual Studio 2017 per scrivere e testare il programma ed è stato molto comodo utilizzare l'estensione di GitHub
+  direttamente dall'IDE.
   
   
   
