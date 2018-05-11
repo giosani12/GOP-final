@@ -16,6 +16,5 @@ public:
 	int type;
 
 	int randomCard();
-	CARD();
 };
 #endif

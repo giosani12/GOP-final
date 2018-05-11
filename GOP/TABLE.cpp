@@ -18,8 +18,7 @@ TABLE::TABLE(int input)//costruttore tabella, inizializza tutti i campi e prende
 
 int TABLE::getType(int input)//traduttore da numero casella a tipo di casella
 {
-	if ((input >= 0) && (input < lenght)) return pt[input - 1];
-	else return 8;
+	return pt[input - 1];
 }
 
 void TABLE::printTable()//stampa la tabella e il traduttore per i tipi di casella

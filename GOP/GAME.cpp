@@ -20,8 +20,7 @@ GAME::~GAME()
 void GAME::throwDice()//funzione del lancio dado
 {
 	int j = (rand() % 6) + 1;
-	playerList->position = playerList->position + j;
-	if (playerList->position > ptTab->lenght) playerList->position = ptTab->lenght;
+	addToPosition(j);
 	cout << "\nIl giocatore " << playerList->name << " tira il dado ed esce " << j << ", ora " << playerList->name << " e\' in posizione ";
 	cout << playerList->position << ".";
 }

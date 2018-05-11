@@ -16,7 +16,6 @@ public:
 	char name[20];
 	ptPLAYER next;
 
-	PLAYER();
 	PLAYER(int, char[]);
 };
 #endif

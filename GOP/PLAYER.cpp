@@ -10,10 +10,6 @@
 
 using namespace std;
 
-PLAYER::PLAYER()
-{
-}
-
 PLAYER::PLAYER(int num, char n[]) //costruttore della struttura giocatore, riempi i campi del giocatore corrente,
 {								  //usata dal costruttore della lista playerList
 	numero = num ;
