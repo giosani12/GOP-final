@@ -94,10 +94,9 @@
   
   <h3>CARD</h3>
   <b>Tipo</b> -> intero che viene generato casualmente. <br>
-  <b>Puntatore a carta</b> -> Per creare il mazzo di carte. <br>
+  <b>Puntatore a carta </b> -> Per creare il mazzo di carte. <br>
   
-  
-  <h3><Organizzazione del gruppo:</h3>
+  <h3> Organizzazione del gruppo: </h3>
   Abbiamo usato Github per poter lavorare su diversi computer, poter condividere facilmente il codice fatto e avere una cronologia
   di tutte le modifiche apportate.
   Abbiamo usato MS Visual Studio 2017 per scrivere e testare il programma ed è stato molto comodo utilizzare l'estensione di GitHub
