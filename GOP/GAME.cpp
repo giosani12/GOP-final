@@ -228,23 +228,9 @@ void GAME::createPlayerList() //Inizializza il puntatore alla lista di giocatori
 		}
 	}
 	NUMERO_GIOCATORI = count;
-	cout << "\nNUMERO MASSIMO DI CARATTERI CONSENTITI: 20";
-	cout << "\nInserire nome per giocatore " << i << ":";
-	cin.ignore(1, EOF);
-	cin.getline(tmpName, 21);
-	playerList = new PLAYER(1, tmpName);
-	ptHead = playerList;
-	while (i < NUMERO_GIOCATORI)
-	{
-		i++;
-		cout << "\nInserire nome per giocatore " << i << ":";
-		cin.getline(tmpName, 21);
-		tmp = new PLAYER(i, tmpName);
-		playerList->next = tmp;
-		playerList = tmp;
-	}
-	/*cin.ignore(200, '\n');
-LABEL:
+	cin.ignore(200, '\n');
+	bool temp;
+	temp = true;
 	cout << "\nInserire nome per giocatore " << i << ": ";
 	cin.getline(tmpName, 21);
 	if (!cin.good())
@@ -252,14 +238,27 @@ LABEL:
 		cin.clear();
 		cin.ignore(200, '\n');
 		cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
-		goto LABEL;
+		temp = false;
+	}
+	while (!temp)
+	{
+		temp = true;
+		cout << "\nInserire nome per giocatore " << i << ": ";
+		cin.getline(tmpName, 21);
+		if (!cin.good())
+		{
+			cin.clear();
+			cin.ignore(200, '\n');
+			cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
+			temp = false;
+		}
 	}
 	playerList = new PLAYER(1, tmpName);
 	ptHead = playerList;
 	i++;
 	while (i <= NUMERO_GIOCATORI)
 	{
-	N_LABEL:
+		temp = true;
 		cout << "\nInserire nome per giocatore " << i << ": ";
 		cin.getline(tmpName, 21, '\n');
 		if (!cin.good())
@@ -267,13 +266,26 @@ LABEL:
 			cin.clear();
 			cin.ignore(200, '\n');
 			cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
-			goto N_LABEL;
+			temp = false;
+		}
+		while (!temp)
+		{
+			temp = true;
+	 		cout << "\nInserire nome per giocatore " << i << ": ";
+			cin.getline(tmpName, 21, '\n');
+			if (!cin.good())
+			{
+				cin.clear();
+				cin.ignore(200, '\n');
+				cout << "\nNome troppo lungo, limitarsi a 20 caratteri.";
+				temp = false;
+			}
 		}
 		tmp = new PLAYER(i, tmpName);
 		playerList->next = tmp;
 		playerList = tmp;
 		i++;
-	}*/
+	}
 	playerList->next = ptHead; //in uscita playerlist punta all'ultimo giocatore perchè il primo turno inizia con un playerlist=playerlist->next
 }
 
