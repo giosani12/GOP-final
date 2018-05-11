@@ -58,7 +58,7 @@
   sulla casella precedente e si ferma quando trova uno o più giocatori; invece nel caso in cui il booleano sia vero,
   si ferma quando trova il giocatore che ha vinto perchè ha raggiunto il numero necessario di punti.
   In ogni caso restituisce il puntatore alla testa di un array di puntatori ai giocatori corrispondenti.
-  Viene chiamata nell'effetto SwapWithFirs e nel metodo endGame.<br>
+  Viene chiamata in SwapWithFirst e in endGame.<br>
   <b>swapWithFirst</b> -> metodo che scambia la posizione del giocatore che attivo questo effetto con quella del primo giocatore, 
   nel caso in cui ci sia più di un giocatore, vengono spostati anche gli altri. Viene chiamato dagli effetti di caselle e carte.<br>
   <b>createPlayerList</b> -> metodo che crea una lista circolare di giocatori, viene chiamato in firstTurn.<br>
@@ -77,7 +77,7 @@
   
   
   <h3>PLAYER</h3>
-  <b>Nome</b> -> nome del giocatore (max 20 caratteri).
+  <b>Nome</b> -> nome del giocatore (max 20 caratteri). <br>
   <b>Numero</b> -> numero che viene assegnato durante la creazione dei vari giocatori all'inizio del gioco. <br>
   <b>Posizione</b> -> posizione che il giocatore ha nel tabellone. <br>
   <b>Punti</b> -> punti acquisiti durante il gioco (inizializzati a 0). <br>
@@ -97,7 +97,7 @@
   <b>Puntatore a carta</b> -> Per creare il mazzo di carte. <br>
   
   
-  <h3<Organizzazione del gruppo:</h3>
+  <h3><Organizzazione del gruppo:</h3>
   Abbiamo usato Github per poter lavorare su diversi computer, poter condividere facilmente il codice fatto e avere una cronologia
   di tutte le modifiche apportate.
   Abbiamo usato MS Visual Studio 2017 per scrivere e testare il programma ed è stato molto comodo utilizzare l'estensione di GitHub
