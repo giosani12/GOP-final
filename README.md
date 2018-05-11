@@ -1,6 +1,6 @@
 # GOP-final
 <h1>Gioco dell'oca pazza</h1>
-<b>Giocatori:</b> 1 - &#8734; <br>
+<b>Giocatori:</b> 2 - &#8734; <br>
 <h5>Funzionalità: </h5>
 Il tabellone viene generato casualmente e prevede un numero di caselle compreso tra 55 e 75 ed è accompagnato da un mazzo di carte
 di dimensione variabile tra 40 e 60 elementi, anch'esso generato casualmente.
@@ -28,10 +28,6 @@ Ogni casella così come ogni carta ha un valore associato a cui corrisponde un e
  Dopo l'attivazione degli effetti vieni anche stampata la classifica.
  
  Non abbiamo utilizzato librerie grafiche.
- 
- <h5>Come eseguire il programma: </h5>
- 
- 
  
  <b>Componenti del gruppo: </b><br>
  Francesco Santilli<br>
