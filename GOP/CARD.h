@@ -15,6 +15,7 @@ public:
 	ptCARD next;
 	int type;
 
+	CARD();
 	int randomCard();
 };
 #endif

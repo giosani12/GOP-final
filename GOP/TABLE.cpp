@@ -30,7 +30,7 @@ void TABLE::printTable()//stampa la tabella e il traduttore per i tipi di casell
 		cout << endl;
 		for (int j = 0; j < lenght; j++)
 		{
-			cout << "|" << j + 1 << "| " << pt[j] % 10 << "\t";
+			cout << "|" << j + 1 << "| " << pt[j] << "\t";
 			if ((j+1) % 14 == 0)
 			{
 				cout << "|\n+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+------";

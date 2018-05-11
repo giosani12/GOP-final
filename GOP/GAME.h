@@ -35,7 +35,7 @@ protected:
 	void nextTurn();
 	void endGame(bool);
 public:
-	virtual GAME();
+	GAME();
 	virtual ~GAME();
 	void firstTurn(bool);
 };
